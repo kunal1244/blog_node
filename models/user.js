@@ -1,4 +1,4 @@
-const encryption = require("../utilities/encryption");
+const encryption = require("../routes/encryption");
 module.exports = function (sequelize, DataTypes) {
 
     const User = sequelize.define('User', {

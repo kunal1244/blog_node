@@ -1,0 +1,42 @@
+<% if (user!=undefined) {%>    
+    <div class="container body-content">
+        <div class="row">
+            <% articles.forEach(function(article){ %>
+                <div class="col-md-6">
+                    <article>
+                        <header>
+                            <h2><%= article.title %></h2>
+                        </header>
+
+                        <p><%= article.content %>
+                        </p>
+
+                        <small class="author">
+                            <%= article.author %>
+                        </small>
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs" href="/posts/<%= article.id %>">Read more &raquo;</a>
+                            </div>
+                            <% if (article.authorId==user.dataValues.id){ %>
+                                <div class="pull-right">
+                                        <a class="btn btn-default btn-xs" href="/posts/<%= article.id %>/delete">Delete &raquo;</a>
+                                </div>
+                            <% } %>
+                            <% if (article.authorId==user.dataValues.id){ %>
+                                <div class="pull-right">
+                                        <a class="btn btn-default btn-xs" href="/posts/<%= article.id %>/edit">Edit &raquo;</a>
+                                </div>
+                            <% } %>
+                        </footer>
+                    </article>
+                </div>
+            <% });%>
+        </div>
+    </div>
+<% } %>
+<% if(user==undefined){ %>
+    <center><h2>Please login to continue!</h2></center>
+<% } %>
+

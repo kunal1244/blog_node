@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kunal Das</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type= "text/javascript" src="/javascripts/jquery-3.3.1.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+</head>
+<body>
+<header>
+    <h2><%= error %></h2>
+    <div class="navbar navbar-default navbar-fixed-top text-uppercase">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Kunal Das</a>
+            </div>
+            <% if (user){ %>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/user/details">Welcome <%= user.fullName %></a></li>
+                        <li><a href="/user/logout">Logout</a></li>
+                    </ul>
+                </div>
+            <% } %>
+            <% if(!user){ %>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/user/register">Register</a></li>
+                        <li><a href="/user/login">Login</a></li>
+                    </ul>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <% if (user){ %>
+    <a href="/posts/create"><button style="width:200px;height:50px;margin-left:50px;background-color: rgb(36, 187, 36);color:white;" class="btn">New Article</button></center></a>
+    <% } %>
+    <br><br><br>
+</header>
+<%- body %>
+</body>
+
+</html>

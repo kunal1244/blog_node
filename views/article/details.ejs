@@ -1,0 +1,78 @@
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <header>
+                    <h2><%= title %></h2>
+                </header>
+
+                <p>
+                    <%= content %>
+                </p>
+
+                <small class="author">
+                    <%= this.author %>
+                </small>
+                <% if (authorId==user.dataValues.id){ %>
+                    <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/posts/<%= id %>/delete">Delete</a> 
+                    </div>
+                <% } %>
+                <% if (authorId==user.dataValues.id){ %>
+                    <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/posts/<%= id %>/edit">Edit</a> 
+                    </div>
+                <% } %>
+                   
+                <h2>Comments</h2>
+                <div class="container">
+                    <% comments.forEach(function(comment){ %>
+                        <div class="col-md-12">
+                            <article>
+                                <b></b><small class="author">
+                                    <%= comment.authorName %>
+                                </small></b>
+                                <p><%= comment.content %>
+                                </p>
+                                <% if (comment.authorId==user.dataValues.id){ %>
+                                    <div class="pull-right">
+                                        <a class="btn btn-default btn-xs" href="/comments/<%= comment.id %>">Remove &raquo;</a>
+                                    </div>
+                                <% } %>
+                            </article>
+                        </div>
+                    <% });%>
+                </div>    
+                <br><br><br>
+                <div class="container">
+                    <div class="well">
+                        <form class="form-horizontal" method="POST" action="/posts/<%= id %>/create">
+                            <fieldset>
+                                <legend>Post Comment</legend>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="articleContent">Content</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" id="articleContent" width="200px" rows="5" name="content" required></textarea>
+                                    </div>
+                                </div>
+                
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-4">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                    
+
+                <footer>
+                    <div class="pull-right">
+                        <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
