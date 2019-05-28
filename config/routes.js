@@ -11,9 +11,12 @@ module.exports = (app) => {
 
     app.get('/user/login', User.loginGet);
     app.post('/user/login', User.loginPost);
-
+    app.post('/user/login/otp',User.getOTP);
     app.get('/user/logout', User.logout);
-
+    app.get('/forgot', User.forgotGet);
+    app.post('/forgot', User.forgotPost);
+    app.get('/reset/:token',User.resetGet);
+    app.post('/reset/:token',User.resetPost);
     app.get('/posts/create', Posts.createGet);
     app.post('/posts/create', Posts.createPost);
     app.get('/posts/:id',Posts.details);

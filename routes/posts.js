@@ -35,9 +35,8 @@ module.exports = {
 
     details:(request,response) => {
         let id = request.params.id;
-        Article.findByPk(id).then(article => {
+        Article.findById(id).then(article => {
             Comment.findAll({ where: { postId: id } }).then(comments => {
-                console.log(article.image_url)
                 response.render('article/details',{id:article.id,image:article.image_url,title:article.title,content:article.content, date:article.date, author:article.author, authorId:article.authorId, user:request.user,comments:comments,error:''})
             })
         })

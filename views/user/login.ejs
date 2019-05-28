@@ -1,3 +1,5 @@
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <div class="container body-content span=8 offset=2">
     <div class="well">
         <form class="form-horizontal" method="post" action="/user/login">
@@ -7,6 +9,12 @@
                     <label class="col-sm-4 control-label">Email</label>
                     <div class="col-sm-4 ">
                         <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email">
+                    </div>
+                                        
+                    <a class="btn btn-default" data-toggle="modal" data-target="#myModal">Get OTP</a>
+                    <label class="col-sm-4 control-label">OTP</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="inputOTP" placeholder="OTP" name="otp">
                     </div>
                 </div>
                 <div class="form-group">
@@ -19,9 +27,41 @@
                     <div class="col-sm-4 col-sm-offset-4">
                         <a class="btn btn-default" href="/">Cancel</a>
                         <button type="submit" class="btn btn-primary">Login</button>
+                        <a class="btn btn-default" href="/forgot">Forgot Password</a>
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
 </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Verify Email</h4>
+        </div>
+        <form class="form-horizontal" method="post" action="/user/login/otp">
+            <fieldset>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Email</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a class="btn btn-default" href="/user/login">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Generate OTP</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        
+    </div>
+</div>
+      
+    

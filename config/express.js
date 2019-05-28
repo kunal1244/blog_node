@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const flash= require('express-flash');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
 
@@ -24,7 +25,7 @@ module.exports = (app, config) => {
     app.use(cookieParser('pesho'));
 
     app.use(session({secret: 'pesho', resave: false, saveUninitialized: false}));
-
+    app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
 

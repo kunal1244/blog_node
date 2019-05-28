@@ -20,9 +20,9 @@ module.exports = {
             authorId:request.user.id,
             date:Date.now(),
             authorName:request.user.fullName,
-            postId:parseInt(request.url.charAt(7)),
+            postId:parseInt(request.url.split('/')[2]),
         }).then(article => {
-            response.redirect('/posts/'+request.url.charAt(7));
+            response.redirect('/posts/'+request.url.split('/')[2]);
 
         });
     },

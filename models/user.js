@@ -6,14 +6,16 @@ module.exports = function (sequelize, DataTypes) {
             passwordHash: {type: DataTypes.STRING, required: true},
             fullName: {type: DataTypes.STRING, required: true},
             salt: {type: DataTypes.STRING, required: true},
+            resetPasswordToken: {type: DataTypes.TEXT,allowNull: true},
+            resetPasswordExpires: {type: DataTypes.DATE,allowNull: true}
 
         }, {timestamps: false}
     );
 
     User.prototype.authenticate = function (password) {
-        let inputPasswordHash = encryption.hashPassword(password, this.salt);
-        return inputPasswordHash === this.passwordHash;
+        return encryption.hashPassword(password, this.salt) === this.passwordHash;
     };
+
 
     User.associate =  (models) => {
         User.hasMany(models.Article,{
