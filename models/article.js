@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
         title: {type: DataTypes.STRING, required: true, allowNull: false},
         content: {type: DataTypes.STRING, required: true, allowNull: false},
         date: {type: DataTypes.DATE, required: true, allowNull: false, default: Date.now()},
-        author:{type: DataTypes.STRING, required: true,allowNull: false}
+        author:{type: DataTypes.STRING, required: true,allowNull: false},
+        image_url:{type: DataTypes.STRING, required: true,allowNull: false}
     }, {timestamps: false});
 
     Article.associate = function (models) {

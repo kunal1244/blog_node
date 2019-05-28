@@ -25,7 +25,8 @@ module.exports = {
             content:article_Body.content,
             authorId:request.user.id,
             date:Date.now(),
-            author:request.user.fullName
+            author:request.user.fullName,
+            image_url:request.body.image_url
         }).then(article => {
             response.redirect('/');
 
@@ -36,7 +37,8 @@ module.exports = {
         let id = request.params.id;
         Article.findByPk(id).then(article => {
             Comment.findAll({ where: { postId: id } }).then(comments => {
-                response.render('article/details',{id:article.id,title:article.title,content:article.content, date:article.date, author:article.author, authorId:article.authorId, user:request.user,comments:comments,error:''})
+                console.log(article.image_url)
+                response.render('article/details',{id:article.id,image:article.image_url,title:article.title,content:article.content, date:article.date, author:article.author, authorId:article.authorId, user:request.user,comments:comments,error:''})
             })
         })
     },
@@ -68,6 +70,7 @@ module.exports = {
             article.update({
                 title:request.body.title,
                 content:request.body.content,
+                image_url:request.body.image_url
             })
         });
         response.redirect('/posts/'+req_id);
