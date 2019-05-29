@@ -2,8 +2,20 @@ const User = require('../models').User;
 const encryption=require('./encryption');
 const nodemailer=require('nodemailer');
 const async=require('async');
+const email_validator = require("email-validator");
+const password_validator=require("password-validator");
 const crypto=require('crypto');
 let token;
+
+let schema=new password_validator();
+schema
+.is().min(8)                                    
+.is().max(100)                                  
+.has().uppercase()                              
+.has().lowercase()                              
+.has().digits()                                 
+.has().not().spaces()
+
 module.exports = {
     registerGet: (request, response) => {
         response.render('user/register',{user:request.user,error:''});
@@ -18,6 +30,12 @@ module.exports = {
             }
             else if (req_body.password !== req_body.repeatedPassword) {
                 errorMsg = 'Passwords do not match!'
+            }
+            else if(!email_validator.validate(req_body.email)){
+                errorMsg = 'Please enter a valid email id!'
+            }
+            else if(!schema.validate(req_body.password)){
+                errorMsg= 'Weak Password!'
             }
             if (errorMsg) {
                 response.render('user/register', {user:request.user,error:errorMsg})
@@ -44,6 +62,8 @@ module.exports = {
     },
 
     loginGet: (request, response) => {
+        const val=Math.floor(Math.random()*1000);
+        console.log(val);
         response.render('user/login', {user:request.user,error:'',token:token});
     },
 

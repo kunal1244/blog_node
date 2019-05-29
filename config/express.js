@@ -26,9 +26,15 @@ module.exports = (app, config) => {
 
     app.use(session({secret: 'pesho', resave: false, saveUninitialized: false}));
     app.use(flash());
+
     app.use(passport.initialize());
     app.use(passport.session());
 
+    app.use(function(req, res, next){
+        res.locals.sessionFlash = req.session.sessionFlash;
+        delete req.session.sessionFlash;
+        next();
+    });
     
     app.use(expressLayouts);
 };

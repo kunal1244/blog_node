@@ -10,10 +10,15 @@ module.exports = {
         let errorMsg = '';
         if (!request.isAuthenticated()) {
             errorMsg = 'You should be logged in to make articles!'
-        } else if (!article_Body.title) {
+        } 
+        else if (!article_Body.title) {
             errorMsg = 'Invalid title!';
-        } else if (!article_Body.content) {
+        } 
+        else if (!article_Body.content) {
             errorMsg = 'Invalid content!';
+        }
+        else if (article_Body.content.includes('<script>')){
+            errorMsg = 'Please refrain from entering JS code!'
         }
 
         if (errorMsg) {
@@ -65,14 +70,20 @@ module.exports = {
 
     editPost: (request, response) => {
         let req_id=request.params.id;
-        Article.findById(req_id).then(article =>{
-            article.update({
-                title:request.body.title,
-                content:request.body.content,
-                image_url:request.body.image_url
+        if(!request.body.content.includes('<script>')){
+            Article.findById(req_id).then(article =>{
+                article.update({
+                    title:request.body.title,
+                    content:request.body.content,
+                    image_url:request.body.image_url
+                })
+            });
+            response.redirect('/posts/'+req_id);
+        }
+        else{
+            Article.findById(req_id).then(article => {
+                response.render('article/update',{id:article.id,orig_title:article.title,orig_content:article.content, user:request.user,error:'Please refrain from entering JS code'})
             })
-        });
-        response.redirect('/posts/'+req_id);
-
+        }
     }
 };
