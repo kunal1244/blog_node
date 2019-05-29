@@ -1,7 +1,7 @@
 const encryption = require("../routes/encryption");
 module.exports = function (sequelize, DataTypes) {
 
-    const User = sequelize.define('users', {
+    const User = sequelize.define('User', {
             email: {type: DataTypes.STRING, required: true, unique: true, allowNull: false},
             passwordHash: {type: DataTypes.STRING, required: true},
             fullName: {type: DataTypes.STRING, required: true},
