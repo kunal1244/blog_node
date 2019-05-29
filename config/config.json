@@ -4,7 +4,10 @@
     "password": "technothlon",
     "database": "blog",
     "host": "127.0.0.1",
-    "dialect": "mysql",
+    "dialect": "pg",
     "logging": false
+  },
+  "production": {
+    "use_env_variable": "postgres://hpgosguazhffka:c0e74d569ce7460a8d4f885e8a26fb5e1a7193ae6184b4dc4adf1361f0080971@ec2-54-197-239-115.compute-1.amazonaws.com:5432/d85nvtpdtuk40f"
   }
 }
