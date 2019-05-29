@@ -5,6 +5,7 @@ const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
+const match = config.use_env_variable.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
 
 console.log(env);
 
@@ -13,12 +14,12 @@ let sequelize;
 //     sequelize = new Sequelize(process.env[config.use_env_variable]);
 // } 
 if (env == 'production') {
-    sequelize = new Sequelize(config.use_env_variable, {
+    sequelize = new Sequelize(match[5], match[1], match[2], {
         dialect:  'postgres',
         protocol: 'postgres',
         port:     match[4],
         host:     match[3],
-        logging:  true //false
+        logging:  false
       });
 } 
 else {
