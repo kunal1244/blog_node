@@ -5,9 +5,9 @@ const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
-const match = config.use_env_variable.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
+const match = "postgres://hpgosguazhffka:c0e74d569ce7460a8d4f885e8a26fb5e1a7193ae6184b4dc4adf1361f0080971@ec2-54-197-239-115.compute-1.amazonaws.com:5432/d85nvtpdtuk40f".match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
 
-console.log(env);
+console.log(match);
 
 let sequelize;
 // if (config.use_env_variable) {
