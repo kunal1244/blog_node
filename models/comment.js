@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	const Comment= sequelize.define('Comments', {
+	const Comment= sequelize.define('comments', {
 		id: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,

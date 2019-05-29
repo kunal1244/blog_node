@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
 
-    const Article = sequelize.define('Article', {
+    const Article = sequelize.define('articles', {
         title: {type: DataTypes.STRING, required: true, allowNull: false},
         content: {type: DataTypes.STRING, required: true, allowNull: false},
         date: {type: DataTypes.DATE, required: true, allowNull: false, default: Date.now()},
