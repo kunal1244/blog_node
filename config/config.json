@@ -4,7 +4,7 @@
     "password": "technothlon",
     "database": "blog",
     "host": "127.0.0.1",
-    "dialect": "postgres",
+    "dialect": "mysql",
     "logging": false
   },
   "production": {

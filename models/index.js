@@ -2,16 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(module.filename);
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV || 'development';
 const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
+
+console.log(env);
 
 let sequelize;
 // if (config.use_env_variable) {
 //     sequelize = new Sequelize(process.env[config.use_env_variable]);
 // } 
-if (process.env.HEROKU_POSTGRESQL_COPPER_URL) {
-    sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_COPPER_URL, {
+if (env == 'production') {
+    sequelize = new Sequelize(config.use_env_variable, {
         dialect:  'postgres',
         protocol: 'postgres',
         port:     match[4],
